@@ -7,15 +7,46 @@
     https://garden.zendesk.com/css-components/bedrock/
     https://garden.zendesk.com/css-components/utilities/typography/
    -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/@zendeskgarden/css-bedrock@7.0.21,npm/@zendeskgarden/css-utilities@4.3.0">
+   <link href="https://cdn.jsdelivr.net/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+   <link href="main.css" rel="stylesheet">
 </head>
-<body>
-  <footer>
-  <a href="https://mysite.github.io/support" target="_blank">Report bugs</a>
-  </footer>
 
-    <script src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
+<body>
+  <div id="content"></div>
+    <footer>
+    <a href="https://mysite.github.io/support" target="_blank">Report bugs</a>
+    </footer>
+
+  <script id="requester-template" type="text/x-handlebars-template">
+  <table>
+  <tr>
+    <td>Customer:</td>
+    <td class="data">{{name}}</td>
+  </tr>
+  {{#if tags}}
+  <tr>
+    <td>Tags:</td>
+    <td class="data">{{#each tags}}{{this}} {{/each}}</td>
+  </tr>
+  {{/if}}
+  <tr>
+    <td>Added:</td>
+    <td class="data">{{created_at}}</td>
+  </tr>
+  <tr>
+    <td>Last signed in:</td>
+    <td class="data">{{last_login_at}}</td>
+  </tr>
+  </table>
+</script>
+
+<script id="error-template" type="text/x-handlebars-template">
+  <p>{{status}} - {{statusText}} error. Please report a bug at the link below.</p>
+</script>
+
+<script src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/handlebarsjs/4.0.8/handlebars.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
 
   <!-- <script>
